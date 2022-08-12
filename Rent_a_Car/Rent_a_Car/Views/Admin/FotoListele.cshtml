@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Rent_a_Car.Models.Banner>
+@{
+    ViewBag.Title = "FotoListele";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Fotoğraflar</h2>
+<hr />
+@if (ViewBag.sonuc != null)
+{
+    <div class="alert alert-success">@ViewBag.sonuc</div>
+}
+@if (ViewBag.hata != null)
+{
+    <div class="alert alert-danger">@ViewBag.hata</div>
+}
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Fotoğraf Ekle", "FotoEkle", null, new { @class = "btn btn-info" })
+        <br /><br />
+        <table class="table">
+            <tr class="bg-info">
+                <td align="center">Id</td>
+                <td align="center">Fotoğraf</td>
+                <td align="center">Sil</td>
+            </tr>
+            @foreach (var banner in Model)
+            {
+                <tr>
+                    <td align="center">@banner.Id</td>
+                    <td align="center"><img src="~/Content/Banner/@banner.resimYol" style="width:100px;height:50px" /></td>
+                    <td align="center">@Html.ActionLink("Sil", "FotoSil", new { Id = banner.Id }, new { @class = "btn btn-danger" })</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

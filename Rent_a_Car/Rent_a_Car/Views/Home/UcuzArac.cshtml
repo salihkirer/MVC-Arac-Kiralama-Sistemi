@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Rent_a_Car.Models.Araba>
+@foreach (var araba in Model)
+{
+<div class="col-md-3 col-sm-6 col-xs-6">
+    <div class="product product-single product-hot">
+        <div class="product-thumb">
+            @Html.ActionLink("Detay", "ArabaDetay", new { id = araba.arabaId }, new { @class = "main-btn quick-view" })
+            <img src="~/Content/carFoto/@araba.foto">
+        </div>
+        <div align="center">
+            <div class="product-body">
+                <h3 class="product-price">Günlük @araba.fiyat ₺</h3>
+                <h2 class="product-name"> @araba.arabaMarka @araba.arabaModeli</h2>
+                <div class="product-btns">
+                    @Html.ActionLink("Kirala", "ArabaKirala", new { id = araba.arabaId }, new { @class = "primary-btn add-to-cart" })
+                </div>
+            </div>
+            <h4>En Ucuz Araç</h4>
+        </div>
+    </div>
+</div>
+}

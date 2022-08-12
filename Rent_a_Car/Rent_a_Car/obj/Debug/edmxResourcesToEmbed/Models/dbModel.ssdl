@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="carDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Araba">
+    <Key>
+      <PropertyRef Name="arabaId" />
+    </Key>
+    <Property Name="arabaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="arabaMarka" Type="nvarchar" MaxLength="50" />
+    <Property Name="arabaModeli" Type="nvarchar" MaxLength="50" />
+    <Property Name="plaka" Type="nvarchar" MaxLength="50" />
+    <Property Name="arabaYakit" Type="nvarchar" MaxLength="50" />
+    <Property Name="arabaSanz" Type="nvarchar" MaxLength="50" />
+    <Property Name="kisiSay" Type="int" />
+    <Property Name="kapiSay" Type="int" />
+    <Property Name="bagaj" Type="int" />
+    <Property Name="klima" Type="nvarchar" MaxLength="50" />
+    <Property Name="fiyat" Type="int" />
+    <Property Name="gps" Type="nvarchar" MaxLength="50" />
+    <Property Name="foto" Type="nchar" MaxLength="100" />
+    <Property Name="kiralama" Type="int" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resimYol" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kiralama">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uyeId" Type="int" />
+    <Property Name="arabaId" Type="int" />
+    <Property Name="alisYeri" Type="nvarchar" MaxLength="50" />
+    <Property Name="teslimYeri" Type="nvarchar" MaxLength="50" />
+    <Property Name="alisTarihi" Type="datetime" />
+    <Property Name="teslimTarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="adSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="foto" Type="nchar" MaxLength="100" />
+    <Property Name="uyeAdmin" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Kiralama_ToAraba">
+    <End Role="Araba" Type="Self.Araba" Multiplicity="0..1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Araba">
+        <PropertyRef Name="arabaId" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="arabaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kiralama_ToUye">
+    <End Role="Uye" Type="Self.Uye" Multiplicity="0..1" />
+    <End Role="Kiralama" Type="Self.Kiralama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uye">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="Kiralama">
+        <PropertyRef Name="uyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="carDatabaseModelStoreContainer">
+    <EntitySet Name="Araba" EntityType="Self.Araba" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kiralama" EntityType="Self.Kiralama" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kiralama_ToAraba" Association="Self.FK_Kiralama_ToAraba">
+      <End Role="Araba" EntitySet="Araba" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kiralama_ToUye" Association="Self.FK_Kiralama_ToUye">
+      <End Role="Uye" EntitySet="Uye" />
+      <End Role="Kiralama" EntitySet="Kiralama" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

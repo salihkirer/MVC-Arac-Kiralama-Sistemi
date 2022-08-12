@@ -1,0 +1,47 @@
+﻿@model Rent_a_Car.Models.Araba
+<div class="section section-grey" style="margin-bottom:240px;">
+    <div class="container" style="margin-top:50px;">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="section-title">
+                    <h4 class="title">Araba Detay</h4>
+                </div>
+                <table class="shopping-cart-table table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th> Araç Bilgileri</th>
+                            <th></th>
+                            <th class="text-center">Fiyat</th>
+                            <th class="text-center">Kiralama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td><img style="width:150px" src="~/Content/carFoto/@Model.foto"></td>
+                                <td class="details">
+                                    <a href="#">@Model.arabaMarka @Model.arabaModeli</a>
+                                    <ul>
+                                        <li><span>Yakıt Tipi: @Model.arabaYakit</span></li>
+                                        <li><span>Şanzıman Tipi: @Model.arabaSanz</span></li>
+                                        <li><span>Kişi Sayısı: @Model.kisiSay</span></li>
+
+                                    </ul>
+                                </td>
+                                <td class="details">
+                                    <ul>
+                                        <li><span>Kapı Sayısı: @Model.kapiSay</span></li>
+                                        <li><span>Bagaj Tipi: @Model.bagaj</span></li>
+                                        <li><span>Klima: @Model.klima</span></li>
+                                        <li><span>Gps: @Model.gps</span></li>
+                                    </ul>
+
+                                </td>
+                                <td class="price text-center"><strong>@Model.fiyat ₺</strong></td>
+                                <td align="center">
+                                    @Html.ActionLink("Kirala", "ArabaKirala", new { id = Model.arabaId }, new { @class = "primary-btn add-to-cart" })
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+</div></div></div></div>

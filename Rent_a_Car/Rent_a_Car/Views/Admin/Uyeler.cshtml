@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Rent_a_Car.Models.Uye>
+@{
+    ViewBag.Title = "Uyeler";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Üyeler</h2>
+<hr />
+@if (ViewBag.sonuc != null)
+{
+    <div class="alert alert-success">@ViewBag.sonuc</div>
+}
+@if (ViewBag.hata != null)
+{
+    <div class="alert alert-danger">@ViewBag.hata</div>
+}
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Üye Ekle", "UyeEkle", null, new { @class = "btn btn-info" })
+        <br /><br />
+        <input id="arama" class="form-control" placeholder="Üye Arama">
+        <br /><br />
+        <table class="table" id="uyetable">
+            <tr class="bg-info">
+                <td align="center">Id</td>
+                <td align="center">Foto</td>
+                <td align="center">Kullanıcı Adı</td>
+                <td align="center">Adı Soyadı</td>
+                <td align="center">E-Posta</td>
+                <td align="center">Statü</td>
+                <td align="center">Düzenle</td>
+                <td align="center">Sil</td>
+            </tr>
+            @foreach (var uye in Model)
+            {
+                <tr>
+                    <td align="center">@uye.uyeId</td>
+                    <td align="center">
+                        <img src="~/Content/UyeFoto/@uye.foto" style="width:30px;" />
+                    </td>
+                    <td align="center">@uye.kullaniciAdi</td>
+                    <td align="center">@uye.adSoyad</td>
+                    <td align="center">@uye.email</td>
+                    <td align="center">
+                        @if (uye.uyeAdmin == 1)
+                        {
+                            <span>Admin</span>
+                        }
+                        else
+                        {
+                            <span>Üye</span>
+                        }
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Düzenle", "UyeDuzenle", new
+                   {
+                       id = uye.uyeId
+                   }, new { @class = "btn btn-warning" })
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Sil", "UyeSil", new { id = uye.uyeId }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+@section scripts {
+    <script>
+        table = document.getElementById("uyetable");
+        $(document).ready(function () {
+            $("#arama").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#uyetable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

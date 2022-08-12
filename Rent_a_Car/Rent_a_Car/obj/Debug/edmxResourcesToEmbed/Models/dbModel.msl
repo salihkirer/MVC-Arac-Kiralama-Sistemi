@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="carDatabaseModelStoreContainer" CdmEntityContainer="carDatabaseEntities5">
+    <EntitySetMapping Name="Araba">
+      <EntityTypeMapping TypeName="carDatabaseModel.Araba">
+        <MappingFragment StoreEntitySet="Araba">
+          <ScalarProperty Name="arabaId" ColumnName="arabaId" />
+          <ScalarProperty Name="arabaMarka" ColumnName="arabaMarka" />
+          <ScalarProperty Name="arabaModeli" ColumnName="arabaModeli" />
+          <ScalarProperty Name="plaka" ColumnName="plaka" />
+          <ScalarProperty Name="arabaYakit" ColumnName="arabaYakit" />
+          <ScalarProperty Name="arabaSanz" ColumnName="arabaSanz" />
+          <ScalarProperty Name="kisiSay" ColumnName="kisiSay" />
+          <ScalarProperty Name="kapiSay" ColumnName="kapiSay" />
+          <ScalarProperty Name="bagaj" ColumnName="bagaj" />
+          <ScalarProperty Name="klima" ColumnName="klima" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="gps" ColumnName="gps" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="kiralama" ColumnName="kiralama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banner">
+      <EntityTypeMapping TypeName="carDatabaseModel.Banner">
+        <MappingFragment StoreEntitySet="Banner">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="resimYol" ColumnName="resimYol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kiralama">
+      <EntityTypeMapping TypeName="carDatabaseModel.Kiralama">
+        <MappingFragment StoreEntitySet="Kiralama">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="arabaId" ColumnName="arabaId" />
+          <ScalarProperty Name="alisYeri" ColumnName="alisYeri" />
+          <ScalarProperty Name="teslimYeri" ColumnName="teslimYeri" />
+          <ScalarProperty Name="alisTarihi" ColumnName="alisTarihi" />
+          <ScalarProperty Name="teslimTarihi" ColumnName="teslimTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uye">
+      <EntityTypeMapping TypeName="carDatabaseModel.Uye">
+        <MappingFragment StoreEntitySet="Uye">
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="adSoyad" ColumnName="adSoyad" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="uyeAdmin" ColumnName="uyeAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

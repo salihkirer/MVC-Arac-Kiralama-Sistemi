@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Rent_a_Car.Models.Araba>
+@{
+    ViewBag.Title = "Arabalar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Arabalar</h2>
+<hr />
+@if (ViewBag.sonuc != null)
+{
+    <div class="alert alert-success">@ViewBag.sonuc</div>
+}
+@if (ViewBag.hata != null)
+{
+    <div class="alert alert-danger">@ViewBag.hata</div>
+}
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Araba Ekle", "ArabaEkle", null, new{ @class = "btn btn-info"})
+        <br /><br />
+        <input id="arama" class="form-control" placeholder="Araba Arama">
+        <br /><br />
+        <table class="table" id="cartable">
+            <tr class="bg-info">
+                <td align="center">Id</td>
+                <td align="center">Foto</td>
+                <td align="center">Plaka</td>    
+                <td align="center">Marka</td>
+                <td align="center">Modeli</td>           
+                <td align="center">Yakit</td>
+                <td align="center">Şanzıman Tipi</td>
+                <td align="center">Kişi Sayısı</td>
+                <td align="center">Kapı Sayısı</td>
+                <td align="center">Bagaj</td>
+                <td align="center">Klima</td>
+                <td align="center">Fiyat</td>
+                <td align="center">Gps</td>
+                <td align="center">Kira</td>
+                <td align="center">Düzenle</td>
+                <td align="center">Sil</td>
+            </tr>
+            @foreach (var araba in Model)
+            {
+                <tr>
+                    <td>@araba.arabaId</td>
+                    <td>
+                        <img src="~/Content/carFoto/@araba.foto" style="width:30px;" />
+                    </td>
+                    <td align="center">@araba.plaka</td>
+                    <td align="center">@araba.arabaMarka</td>
+                    <td align="center">@araba.arabaModeli</td>
+                    <td align="center">@araba.arabaYakit</td>
+                    <td align="center">@araba.arabaSanz</td>
+                    <td align="center">@araba.kisiSay</td>
+                    <td align="center">@araba.kapiSay</td>
+                    <td align="center">@araba.bagaj</td>
+                    <td align="center">@araba.klima</td>
+                    <td align="center">@araba.fiyat</td>
+                    <td align="center">@araba.gps</td>
+                    <td align="center">@araba.kiralama</td>
+                    <td align="center">
+                        @Html.ActionLink("Düzenle", "ArabaDuzenle", new {id = araba.arabaId}, new { @class = "btn btn-warning" })</td>
+                    <td align="center">
+                        @Html.ActionLink("Sil", "ArabaSil", new
+                   {
+                       id = araba.arabaId
+                   }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+@section scripts {
+<script>
+        table = document.getElementById("cartable");
+        $(document).ready(function () {
+            $("#arama").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#cartable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+</script>
+}

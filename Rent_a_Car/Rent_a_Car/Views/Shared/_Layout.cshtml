@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>RENTaCAR</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/Content/rentaCar/css/bootstrap.min.css" />
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="~/Content/rentaCar/css/slick.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/rentaCar/css/slick-theme.css" />
+
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="~/Content/rentaCar/css/nouislider.min.css" />
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="~/Content/rentaCar/css/font-awesome.min.css">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/Content/rentaCar/css/style.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="sr-only"> </span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="header-logo">
+                        <a class="logo" href="~/Home/Index">
+                            <img style="width:200px;" src="~/Content/rentaCar/img/logom.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="~/Home/Index">Ana Sayfa</a>
+                        </li>
+                       
+                        <li>
+                            <a href="~/Home/Arabalar">Arabalar</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/Hakkimizda">Hakkımızda</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/Iletisim">İletişim</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Session["uyeOturum"] == null)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Giriş", "OturumAc", "Home", new { returnUrl = Request.RawUrl }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        else
+                        {
+                            if (Session["uyeAdmin"].ToString() == "1")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="~/Admin/Index">Admin Paneli</a>
+                                </li>
+                            }
+                            if (Session["uyeAdmin"].ToString() == "0")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="~/Home/UyeGuncelle/@Session["uyeId"].ToString()">Hesap</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                @Html.ActionLink("Çıkış", "OturumKapat", "Home", new { returnUrl = Request.RawUrl }, new { @class = "nav-link" })
+                            </li>
+                            if (Session["uyeAdmin"].ToString() == "0")
+                            {
+                                <li class="nav-item">
+                                    <a href="~/Home/UyeGuncelle/@Session["uyeId"].ToString()">
+                                        <img class="d-flex mr-3 rounded-circle" src="~/Content/UyeFoto/@Session["uyeFoto"].ToString()" style="width:21px;height:21px;" alt="@Session["uyeKadi"].ToString()" title="@Session["uyeKadi"].ToString()">
+                                    </a>
+                                </li>
+                            }
+                            else { 
+                            <li class="nav-item">
+                                <a>
+                                    <img class="d-flex mr-3 rounded-circle" src="~/Content/UyeFoto/@Session["uyeFoto"].ToString()" style="width:21px;height:21px;" alt="@Session["uyeKadi"].ToString()" title="@Session["uyeKadi"].ToString()">
+                                </a>
+                            </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+    <!-- FOOTER -->
+    <footer id="footer" class="section section-grey">
+        <!-- container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="footer-logo">
+                        <a class="logo" href="~/Home/Index">
+                            <img style="width:200px;" src="~/Content/rentaCar/img/logom.png" alt="">
+                        </a>
+                    </div>
+                     <p>by Salih Kırer</p>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </footer>
+    <!-- /FOOTER -->
+    <!-- jQuery Plugins -->
+    <script src="~/Content/rentaCar/js/jquery.min.js"></script>
+    <script src="~/Content/rentaCar/js/bootstrap.min.js"></script>
+    <script src="~/Content/rentaCar/js/slick.min.js"></script>
+    <script src="~/Content/rentaCar/js/nouislider.min.js"></script>
+    <script src="~/Content/rentaCar/js/jquery.zoom.min.js"></script>
+    <script src="~/Content/rentaCar/js/main.js"></script>
+
+
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js">
+    </script>@RenderSection("scripts", false)
+
+
+</body>
+</html>

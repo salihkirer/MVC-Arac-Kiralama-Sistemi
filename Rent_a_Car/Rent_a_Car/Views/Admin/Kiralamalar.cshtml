@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Rent_a_Car.Models.Kiralama>
+@{
+    ViewBag.Title = "Kiralamalar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Kiralamalar</h2>
+<hr />
+@if (ViewBag.sonuc != null)
+{
+    <div class="alert alert-success">@ViewBag.sonuc</div>
+}
+@if (ViewBag.hata != null)
+{
+    <div class="alert alert-danger">@ViewBag.hata</div>
+}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr class="bg-info">
+                <td align="center">Id</td>
+                <td align="center">Uye Id</td>
+                <td align="center">Araba Id</td>
+                <td align="center">Alış Yeri</td>
+                <td align="center">Teslim Yeri</td>
+                <td align="center">Alış Tarihi</td>
+                <td align="center">Teslim Tarihi</td>
+                <td align="center">Sil</td>
+            </tr>
+            @foreach (var kiralama in Model)
+            {
+                <tr>
+                    <td>@kiralama.Id</td>
+                    <td align="center">@kiralama.uyeId</td>
+                    <td align="center">@kiralama.arabaId</td>
+                    <td align="center">@kiralama.alisYeri</td>
+                    <td align="center">@kiralama.teslimYeri</td>
+                    <td align="center">@kiralama.alisTarihi</td>
+                    <td align="center">@kiralama.teslimTarihi</td>
+                    <td align="center">
+                        @Html.ActionLink("Sil", "KiralamaSil", new
+                   {
+                       id = kiralama.Id
+                   }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

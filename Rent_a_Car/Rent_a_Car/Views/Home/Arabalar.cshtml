@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Rent_a_Car.Models.Araba>
+<div class="section section-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="order-summary clearfix">
+                    <div class="section-title">
+                        <h4 class="title">Arabalar</h4>
+                    </div>
+                    <table class="shopping-cart-table table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th> Araç Bilgileri</th>
+                                <th></th>
+                                <th class="text-center">Fiyat</th>
+                                <th class="text-center">Kiralama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var araba in Model)
+                            {
+                                <tr>
+                                    <td><img style="width:150px" src="~/Content/carFoto/@araba.foto"></td>
+                                    <td class="details">
+                                        <a href="~/Home/ArabaDetay/@araba.arabaId">@araba.arabaMarka @araba.arabaModeli</a>
+                                        <ul>
+                                            <li><span>Yakıt Tipi: @araba.arabaYakit</span></li>
+                                            <li><span>Şanzıman Tipi: @araba.arabaSanz</span></li>
+                                            <li><span>Kişi Sayısı: @araba.kisiSay</span></li>
+
+                                        </ul>
+                                    </td>
+                                    <td class="details">
+                                        <ul>
+                                            <li><span>Kapı Sayısı: @araba.kapiSay</span></li>
+                                            <li><span>Bagaj Tipi: @araba.bagaj</span></li>
+                                            <li><span>Klima: @araba.klima</span></li>
+                                            <li><span>Gps: @araba.gps</span></li>
+                                        </ul>
+
+                                    </td>
+                                    <td class="price text-center"><strong>@araba.fiyat ₺</strong></td>
+                                    <td align="center">
+                                        @Html.ActionLink("Kirala", "ArabaKirala", new { id = araba.arabaId }, new { @class = "primary-btn add-to-cart" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

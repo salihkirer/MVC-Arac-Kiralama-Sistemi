@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3e6e579fa5444b058814e56d7cfab200" Name="Diagram1">
+        <EntityTypeShape EntityType="carDatabaseModel.Araba" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="carDatabaseModel.Banner" Width="1.5" PointX="6.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="carDatabaseModel.Kiralama" Width="1.5" PointX="3.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="carDatabaseModel.Uye" Width="1.5" PointX="6.125" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="carDatabaseModel.FK_Kiralama_ToAraba" ManuallyRouted="false" />
+        <AssociationConnector Association="carDatabaseModel.FK_Kiralama_ToUye" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

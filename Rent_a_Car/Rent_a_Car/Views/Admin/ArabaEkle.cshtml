@@ -1,0 +1,91 @@
+﻿@model Rent_a_Car.ViewModel.arabaModel
+@{
+    ViewBag.Title = "ArabaEkle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2> Araba Ekle</h2><hr>
+<div class="row">
+    <div class="col-md-3">
+        @using (Html.BeginForm("ArabaEkle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            @Html.LabelFor(m => m.arabaMarka)
+            @Html.TextBoxFor(m => m.arabaMarka, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.arabaMarka, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(m => m.arabaModeli)
+            @Html.TextBoxFor(m => m.arabaModeli, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.arabaModeli, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(m => m.arabaYakit)
+            @Html.DropDownListFor(k => k.arabaYakit, new List<SelectListItem>() { new SelectListItem() { Text = "AC Dizel", Value = "AC Dizel" }, new SelectListItem() { Text = "Benzinli", Value = "Benzinli" }, new SelectListItem() { Text = "LPGli", Value = "LPGli" }, new SelectListItem() { Text = "Hibrit", Value = "Hibrit" } }, new { @class = "formcontrol" })
+            @Html.ValidationMessageFor(m => m.arabaYakit, null, new { @class = "text-danger" })
+            <br /><br />
+            @Html.LabelFor(m => m.arabaSanz)
+            @Html.DropDownListFor(k => k.arabaSanz, new List<SelectListItem>() { new SelectListItem() { Text = "Otomatik", Value = "Otomatik" }, new SelectListItem() { Text = "1", Value = "1" }, new SelectListItem() { Text = "2", Value = "2" }, new SelectListItem() { Text = "3", Value = "3" }, new SelectListItem() { Text = "4", Value = "4" }, new SelectListItem() { Text = "5", Value = "5" }, new SelectListItem() { Text = "6", Value = "6" } }, new { @class = "formcontrol" })
+            @Html.ValidationMessageFor(m => m.arabaSanz, null, new { @class = "text-danger" })
+            <br /><br />
+            @Html.LabelFor(m => m.kisiSay)
+            @Html.DropDownListFor(k => k.kisiSay, new List<SelectListItem>() { new SelectListItem() { Text = "1", Value = "1" }, new SelectListItem() { Text = "2", Value = "2" }, new SelectListItem() { Text = "3", Value = "3" }, new SelectListItem() { Text = "4", Value = "4" }, new SelectListItem() { Text = "5", Value = "5" }, new SelectListItem() { Text = "6", Value = "6" } }, new { @class = "formcontrol" })
+            @Html.ValidationMessageFor(m => m.kisiSay, null, new { @class = "text-danger" })
+            <br /><br />
+            @Html.LabelFor(m => m.kapiSay)
+            @Html.DropDownListFor(k => k.kapiSay, new List<SelectListItem>() { new SelectListItem() { Text = "1", Value = "1" }, new SelectListItem() { Text = "2", Value = "2" }, new SelectListItem() { Text = "3", Value = "3" }, new SelectListItem() { Text = "4", Value = "4" }, new SelectListItem() { Text = "5", Value = "5" } }, new { @class = "formcontrol" })
+            @Html.ValidationMessageFor(m => m.kapiSay, null, new { @class = "text-danger" })
+            <br /><br />
+                @Html.LabelFor(m => m.bagaj)
+                @Html.DropDownListFor(k => k.bagaj, new List<SelectListItem>() { new SelectListItem() { Text = "1", Value = "1" }, new SelectListItem() { Text = "2", Value = "2" }, new SelectListItem() { Text = "3", Value = "3" }, new SelectListItem() { Text = "4", Value = "4" }, new SelectListItem() { Text = "5", Value = "5" }, new SelectListItem() { Text = "6", Value = "6" } }, new { @class = "formcontrol" })
+                @Html.ValidationMessageFor(m => m.bagaj, null, new { @class = "text-danger" })
+                <br /><br />
+                @Html.LabelFor(m => m.klima)
+                @Html.DropDownListFor(k => k.klima, new List<SelectListItem>() { new SelectListItem() { Text = "Var", Value = "Var" }, new SelectListItem() { Text = "Yok", Value = "Yok" } }, new { @class = "formcontrol" })
+                @Html.ValidationMessageFor(m => m.klima, null, new { @class = "text-danger" })
+                <br /><br />
+                @Html.LabelFor(m => m.fiyat)
+                @Html.TextBoxFor(m => m.fiyat, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.fiyat, null, new { @class = "text-danger" })
+                <br /><br />
+                @Html.LabelFor(m => m.gps)
+                @Html.DropDownListFor(k => k.gps, new List<SelectListItem>() { new SelectListItem() { Text = "Var", Value = "Var" }, new SelectListItem() { Text = "Yok", Value = "Yok" } }, new { @class = "formcontrol" })
+                @Html.ValidationMessageFor(m => m.gps, null, new { @class = "text-danger" })
+                <br /><br />
+                @Html.LabelFor(m => m.plaka)
+                @Html.TextBoxFor(m => m.plaka, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.plaka, null, new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(m => m.foto)
+                @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.foto, null, new { @class = "text-danger" })
+                <br />
+                <input type="submit" value="Kaydet" class="btn btn-success" />
+        }
+        <br />
+        @if (ViewBag.sonuc != null)
+        {
+            <div class="alert alert-success">@ViewBag.sonuc</div>
+        }
+        @if (ViewBag.hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.hata</div>
+        }
+        <img src="" id="arabaFoto" class="img-thumbnail" />
+
+    </div>
+
+</div>
+@section scripts {
+    <script>
+        $("#Foto").change(function () {
+            readURL(this);
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#arabaFoto').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
